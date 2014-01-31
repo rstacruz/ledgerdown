@@ -53,7 +53,7 @@ describe 'expander', ->
       5000 = Cash balance'''
 
     expect(data[0].description).eq "Cash balance"
-    expect(j data[0].postings).eq j [ "Cash  = $5000" ]
+    expect(j data[0].postings).eq j [ "[Cash]  = $5000" ]
 
   it 'null transaction', ->
     data = Expander.parse '''
@@ -139,7 +139,7 @@ describe 'expander', ->
         Jan 24:
         5000 = Cash balance'''
 
-      expect(data[0].postings[0]).eq "Cash  = PHP 5000"
+      expect(data[0].postings[0]).eq "[Cash]  = PHP 5000"
 
     it 'extra posting with amount', ->
       data = Expander.parse '''

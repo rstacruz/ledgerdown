@@ -87,7 +87,7 @@ var Expander = {
           re.push({
             date: date,
             description: m.account + " balance",
-            postings: [ m.account + "  = " + curr(m.amount) ]
+            postings: [ "[" + m.account + "]  = " + curr(m.amount) ]
           });
         },
 

@@ -17,7 +17,6 @@ ledgerdown files. They'll look like this:
     4000  Cash balance
     2000* ATM withdrawal
           Expenses:Fees 11, Cash 2000, Savings
-    2000* ATM withdrawal
 
 Then run `ledgerdown` when you get home, to get this output:
 
