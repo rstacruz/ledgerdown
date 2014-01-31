@@ -32,6 +32,13 @@ describe 'expander', ->
 
     expect(data[0].description).eq "grocery"
 
+  it 'transaction with comma and description', ->
+    data = Expander.parse '''
+      Jan 24:
+      500 - Cash > Expenses, grocery'''
+
+    expect(data[0].description).eq "grocery"
+
   it 'date with d-o-w', ->
     data = Expander.parse '''
       Jan 24 Wed:
@@ -173,12 +180,11 @@ describe 'expander', ->
 
       expect(data[0].postings[2]).eq "(Budget:Grocery)  PHP -200"
 
-  it.only 'multiple transactions', ->
+  it 'multiple transactions', ->
     data = Expander.parse '''
       Jan 2:
       5100 = Bank balance
       100  - Income > Bank, salary
     '''
 
-    console.log(data)
     expect(data).have.length 2

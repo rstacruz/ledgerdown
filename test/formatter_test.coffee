@@ -4,10 +4,7 @@ expect = require('chai').expect
 year = (new Date()).getFullYear()
 
 describe 'formats', ->
-  proc = (str) ->
-    data = Expander.parse(str)
-    console.log(data)
-    format(data)
+  proc = (str) -> format Expander.parse(str)
 
   it 'simple', ->
     str = proc """
@@ -25,25 +22,27 @@ describe 'formats', ->
         Income
     """
 
-  xit 'inferred', ->
+  it 'inferred', ->
     str = proc """
-      - 100 .. Cash > Laundry @ jan 3
+      Jan 2:
+      100 - Cash > Laundry
     """
     expect(str).to.eql """
-      #{year}/01/03 * Laundry
-        Laundry  100
+      #{year}/01/02 * Laundry
+        Laundry  $100
         Cash
     """
 
-  xit 'note', ->
+  it 'note', ->
     str = proc """
-      100 A > B @ jun 4
-        .. ; awesome
+      Jan 2:
+      100 A > B
+        ; awesome
     """
 
     expect(str).to.eql """
-      #{year}/06/04 * B
-        B  100
+      #{year}/01/02 * B
+        B  $100
         A
         ; awesome
     """
