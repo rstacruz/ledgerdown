@@ -15,7 +15,7 @@ describe 'expander', ->
     expect(j data).eq j [
       date: "#{year}/01/24"
       description: "Expenses"
-      postings: [ "Expenses  500", "Cash" ]
+      postings: [ "Expenses  $500", "Cash" ]
     ]
 
   it 'transaction without dash', ->
@@ -23,7 +23,7 @@ describe 'expander', ->
       Jan 24:
       500 Cash > Expenses'''
 
-    expect(j data[0].postings).eq j [ "Expenses  500", "Cash" ]
+    expect(j data[0].postings).eq j [ "Expenses  $500", "Cash" ]
 
   it 'transaction with description', ->
     data = Expander.parse '''
@@ -45,7 +45,7 @@ describe 'expander', ->
       500 - Cash > Expenses
           ; Chicken'''
 
-    expect(j data[0].postings).eq j [ "Expenses  500", "Cash", "; Chicken" ]
+    expect(j data[0].postings).eq j [ "Expenses  $500", "Cash", "; Chicken" ]
 
   it 'balance assertion', ->
     data = Expander.parse '''
@@ -53,7 +53,7 @@ describe 'expander', ->
       5000 = Cash balance'''
 
     expect(data[0].description).eq "Cash balance"
-    expect(j data[0].postings).eq j [ "Cash  = 5000" ]
+    expect(j data[0].postings).eq j [ "Cash  = $5000" ]
 
   it 'null transaction', ->
     data = Expander.parse '''
@@ -72,7 +72,7 @@ describe 'expander', ->
           (Budget:Grocery) -200
     '''
 
-    expect(data[0].postings[2]).eq "(Budget:Grocery)  -200"
+    expect(data[0].postings[2]).eq "(Budget:Grocery)  $-200"
 
   it 'extra posting without amount', ->
     data = Expander.parse '''
@@ -111,7 +111,7 @@ describe 'expander', ->
         Savings
     '''
 
-    expect(j data[0].postings).eq j ["Cash  200", "Savings"]
+    expect(j data[0].postings).eq j ["Cash  $200", "Savings"]
 
   it 'multiple custom postings', ->
     data = Expander.parse '''
@@ -119,8 +119,8 @@ describe 'expander', ->
       500* - Withdrawal
           Cash 1000, Fees -0.23, Assets:Savings'''
 
-    expect(data[0].postings[0]).eq "Cash  1000"
-    expect(data[0].postings[1]).eq "Fees  -0.23"
+    expect(data[0].postings[0]).eq "Cash  $1000"
+    expect(data[0].postings[1]).eq "Fees  $-0.23"
     expect(data[0].postings[2]).eq "Assets:Savings"
 
   describe 'default currency', ->

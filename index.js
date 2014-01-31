@@ -23,7 +23,7 @@ var matcher = new Matcher({
 
 var Expander = {
   options: { 
-    defaultCurrency: null
+    defaultCurrency: "$%s"
   },
 
   parseDate: function (str) {
