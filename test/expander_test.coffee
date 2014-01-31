@@ -55,6 +55,14 @@ describe 'expander', ->
     expect(data[0].description).eq "Cash balance"
     expect(j data[0].postings).eq j [ "[Cash]  = $5000" ]
 
+  it 'balance adjustment', ->
+    data = Expander.parse '''
+      Jan 24:
+      5000 = Cash balance (via Adjustments)'''
+
+    expect(data[0].description).eq "Cash balance"
+    expect(j data[0].postings).eq j [ "Cash  = $5000", "Adjustments" ]
+
   it 'null transaction', ->
     data = Expander.parse '''
       Jan 24:

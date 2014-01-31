@@ -7,8 +7,8 @@ var matcher = new Matcher({
   date: '%{month} %{number}\\s*%{dayOfWeek}?',
   transaction: '%{amount}\\s*-? %{from:account} > %{to:account}( %{description:str})?',
   nullTransaction: '%{str}\\*\\s*-? %{description:str}',
-  balanceAssert: '%{amount} = %{account} balance',
-  balanceAssign: '%{amount} = %{account} balance \\(via %{adjustment:account}\\)',
+  balanceAssert: '%{amount}\\s*=? %{account} balance',
+  balanceAdjust: '%{amount}\\s*=? %{account} balance \\(via %{adjustment:account}\\)',
   note: ' ;\\s*%{note:str}',
   postingLine: ' %{posting}',
   postings: { many: 'posting', separator: /, +/ },
@@ -88,6 +88,15 @@ var Expander = {
             date: date,
             description: m.account + " balance",
             postings: [ "[" + m.account + "]  = " + curr(m.amount) ]
+          });
+        },
+
+        balanceAdjust: function (m) {
+          if (!date) return;
+          re.push({
+            date: date,
+            description: m.account + " balance",
+            postings: [ m.account + "  = " + curr(m.amount), "Adjustments" ]
           });
         },
 
