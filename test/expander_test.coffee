@@ -66,7 +66,16 @@ describe 'expander', ->
   it 'null transaction', ->
     data = Expander.parse '''
       Jan 24:
-      5000 - ATM withdrawal'''
+      5000* ATM withdrawal'''
+
+    expect(data[0].postings).be.empty
+
+  it 'null transaction without amount', ->
+    data = Expander.parse '''
+      Jan 24:
+      * ATM withdrawal'''
+
+    expect(data[0].postings).be.empty
 
   xit 'force balance', ->
     data = Expander.parse '''

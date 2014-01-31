@@ -6,7 +6,7 @@ var matcher = new Matcher({
   dateHeading: '%{date}:',
   date: '%{month} %{number}\\s*%{dayOfWeek}?',
   transaction: '%{amount}\\s*-? %{from:account} > %{to:account}( %{description:str})?',
-  nullTransaction: '%{str}\\*\\s*-? %{description:str}',
+  nullTransaction: '%{str}?\\*\\s*-? %{description:str}',
   balanceAssert: '%{amount}\\s*=? %{account} balance',
   balanceAdjust: '%{amount}\\s*=? %{account} balance \\(via %{adjustment:account}\\)',
   note: ' ;\\s*%{note:str}',

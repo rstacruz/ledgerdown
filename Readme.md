@@ -15,7 +15,7 @@ ledgerdown files. They'll look like this:
     55    Cash > Snacks, Chicken Wraps
     4000  Savings > Cash
     4000  Cash balance
-    2000* ATM withdrawal
+    *     ATM withdrawal
           Expenses:Fees 11, Cash 2000, Savings
 
 Then run `ledgerdown` when you get home, to get this output:
@@ -52,3 +52,39 @@ Options:
     # Default currency format
       ledgerdown -c "AUD %s" < ... > ...
 
+Format
+------
+
+#### Transaction
+
+    :amount [-] :from > :to[,] [:description]
+
+Examples:
+
+    300 - Cash > Expenses Pay for goods
+
+    300 Cash > Snacks, Buffalo chicken tacos
+
+Output:
+
+    Pay for goods
+      Expenses  $300
+      Cash
+
+#### Balance assertion
+
+    :amount [=] :account balance
+
+#### Balance adjustment
+
+    :amount [=] :account balance (via :account)
+
+#### Extra postings
+
+    [:amount]* [-] :description
+       :posting[, :posting2, ... postingN]
+
+You can join multiple postings in one line by commas. Be sure to indent the 
+second.
+
+The first `:amount` is ignored and is allowed for readability.
