@@ -18,7 +18,7 @@ describe 'expander', ->
       postings: [ "Expenses  500", "Cash" ]
     ]
 
-  it.only 'transaction without dash', ->
+  it 'transaction without dash', ->
     data = Expander.parse '''
       Jan 24:
       500 Cash > Expenses'''
@@ -102,6 +102,16 @@ describe 'expander', ->
     expect(data[0].date).eq "2014/01/24"
     expect(data[0].description).eq "Withdrawal"
     expect(data[0].postings).be.empty
+
+  it 'null transaction with custom postings', ->
+    data = Expander.parse '''
+      Jan 24:
+      200* - Withdrawal
+        Cash 200
+        Savings
+    '''
+
+    expect(j data[0].postings).eq j ["Cash  200", "Savings"]
 
   xit 'multiple custom postings', ->
     data = Expander.parse '''

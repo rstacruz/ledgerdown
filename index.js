@@ -90,7 +90,8 @@ var Expander = {
           if (!date) return;
           re.push({
             date: date,
-            description: m.description
+            description: m.description,
+            postings: []
           });
         },
 
