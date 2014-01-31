@@ -188,3 +188,16 @@ describe 'expander', ->
     '''
 
     expect(data).have.length 2
+
+  it 'ignored lines', ->
+    data = Expander.parse '''
+      Jan 2:
+      5100 = Bank balance
+      Something
+      100  - Income > Bank
+    '''
+
+    expect(data).have.length 3
+    expect(data[1].type).eq 'comment'
+    expect(data[1].comment).eq '[Ignored] line 3: Something'
+

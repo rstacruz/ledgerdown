@@ -47,3 +47,12 @@ describe 'formats', ->
         ; awesome
     """
 
+  it 'ignored lines', ->
+    str = proc """
+      Jan 2:
+      Something
+    """
+
+    expect(str).to.eql """
+      ; [Ignored] line 2: Something
+    """
