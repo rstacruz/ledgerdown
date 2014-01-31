@@ -54,5 +54,5 @@ describe 'formats', ->
     """
 
     expect(str).to.eql """
-      ; [Ignored] line 2: Something
+      ; [IGNORED] line 2: Something
     """

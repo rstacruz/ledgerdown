@@ -199,5 +199,5 @@ describe 'expander', ->
 
     expect(data).have.length 3
     expect(data[1].type).eq 'comment'
-    expect(data[1].comment).eq '[Ignored] line 3: Something'
+    expect(data[1].comment).eq '[IGNORED] line 3: Something'
 
