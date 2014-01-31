@@ -5,7 +5,7 @@ var format = require('../lib/formatter').format;
 
 program
   .version(require('../package.json').version)
-  .option('-c, --currency-format', 'currency format [$ %s]', '$ %s')
+  .option('-c, --currency-format [fmt]', 'currency format [$%s]', '$%s')
   .parse(process.argv);
 
 readStdin(function (err, raw) {

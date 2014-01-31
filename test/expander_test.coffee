@@ -1,9 +1,12 @@
 Expander = require '../lib/expander'
+
 expect = require('chai').expect
-year = new Date().getFullYear()
 j = JSON.stringify
 
 describe 'expander', ->
+  beforeEach ->
+    Expander.options.defaultYear = "2014"
+
   it 'should work', ->
     expect(Expander).be.object
 
@@ -13,7 +16,7 @@ describe 'expander', ->
       500 - Cash > Expenses'''
 
     expect(j data).eq j [
-      date: "#{year}/01/24"
+      date: "2014/01/24"
       description: "Expenses"
       postings: [ "Expenses  $500", "Cash" ]
     ]
@@ -24,6 +27,23 @@ describe 'expander', ->
       500 Cash > Expenses'''
 
     expect(j data[0].postings).eq j [ "Expenses  $500", "Cash" ]
+
+  it 'date with year', ->
+    data = Expander.parse '''
+      2010 Jan 24:
+      500 Cash > Expenses'''
+
+    expect(data[0].date).eq "2010/01/24"
+
+  it 'remembering years', ->
+    data = Expander.parse '''
+      2010 Jan 24:
+      500 Cash > Expenses
+      Jan 25:
+      500 Expenses > Cash'''
+
+    expect(data[0].date).eq "2010/01/24"
+    expect(data[1].date).eq "2010/01/25"
 
   it 'transaction with description', ->
     data = Expander.parse '''
