@@ -26,8 +26,6 @@
   "license": "MIT",
   "dependencies": {
     "moment": "~2.5.1",
-    "ledger-cli": "0.0.8",
-    "ledger-rest": "0.0.8",
     "commander": "~2.1.0"
   }
 }

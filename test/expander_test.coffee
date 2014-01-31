@@ -1,4 +1,4 @@
-Expander = require '../index'
+Expander = require '../lib/expander'
 expect = require('chai').expect
 year = new Date().getFullYear()
 j = JSON.stringify
@@ -141,8 +141,14 @@ describe 'expander', ->
     expect(data[0].postings[2]).eq "Assets:Savings"
 
   describe 'default currency', ->
-    beforeEach -> Expander.options.defaultCurrency = 'PHP %s'
-    afterEach  -> Expander.options.defaultCurrency = null
+    defaultFormat = null
+
+    beforeEach ->
+      defaultFormat = Expander.options.currencyFormat
+      Expander.options.currencyFormat = 'PHP %s'
+
+    afterEach ->
+      Expander.options.currencyFormat = defaultFormat
 
     it 'transaction', ->
       data = Expander.parse '''
@@ -166,3 +172,13 @@ describe 'expander', ->
       '''
 
       expect(data[0].postings[2]).eq "(Budget:Grocery)  PHP -200"
+
+  it.only 'multiple transactions', ->
+    data = Expander.parse '''
+      Jan 2:
+      5100 = Bank balance
+      100  - Income > Bank, salary
+    '''
+
+    console.log(data)
+    expect(data).have.length 2

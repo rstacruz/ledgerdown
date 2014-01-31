@@ -1,0 +1,28 @@
+#!/usr/bin/env node
+var program = require('commander');
+var Expander = require('../lib/expander');
+var format = require('../lib/formatter').format;
+
+program
+  .version(require('../package.json').version)
+  .option('-c, --currency-format', 'currency format [$ %s]', '$ %s')
+  .parse(process.argv);
+
+readStdin(function (err, raw) {
+  Expander.options.currencyFormat = program.currencyFormat;
+
+  var data = Expander.parse(raw);
+  var out = format(data);
+
+  console.log(out);
+});
+
+function readStdin(fn) {
+  process.stdin.resume(); /* paused by default */
+  process.stdin.setEncoding('utf8');
+
+  var data = '';
+  process.stdin.on('data', function(chunk) { data += chunk.toString(); });
+  process.stdin.on('end', function() { fn(null, data); });
+}
+
