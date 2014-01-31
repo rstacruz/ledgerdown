@@ -113,7 +113,7 @@ describe 'expander', ->
 
     expect(j data[0].postings).eq j ["Cash  200", "Savings"]
 
-  xit 'multiple custom postings', ->
+  it 'multiple custom postings', ->
     data = Expander.parse '''
       Jan 24:
       500* - Withdrawal

@@ -68,13 +68,18 @@ var Expander = {
           last.postings.push("; "+m.note);
         },
 
-        postingLine: function(m) {
+        postingLine: function (m) {
           if (!last) return;
 
-          if (m.amount)
-            last.postings.push(m.account + "  " + curr(m.amount));
-          else
-            last.postings.push(m.account);
+          var postings = line.trim().split(/,\s+/);
+          postings.forEach(function (posting) {
+            m = matcher.match('posting', posting);
+
+            if (m.amount)
+              last.postings.push(m.account + "  " + curr(m.amount));
+            else
+              last.postings.push(m.account);
+          });
         },
 
         balanceAssert: function (m) {
