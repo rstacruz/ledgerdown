@@ -57,7 +57,7 @@ Format
 
 #### Transaction
 
-    :amount [-] :from > :to[,] [:description]
+    :amount [-] :from > :to[,] [:description] [@ :date]
 
 Examples:
 
@@ -73,7 +73,7 @@ Output:
 
 #### Balance assertion
 
-    :amount [=] :account balance
+    :amount [=] :account balance [@ :date]
 
 #### Balance adjustment
 
