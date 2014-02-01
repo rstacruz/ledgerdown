@@ -57,13 +57,15 @@ Format
 
 #### Transaction
 
-    :amount [-] :from > :to[,] [:description] [@ :date]
+    :amount [-] :from > :to[:,] [:description] [@ :date]
 
 Examples:
 
     300 - Cash > Expenses Pay for goods
 
     300 Cash > Snacks, Buffalo chicken tacos
+
+    500 - Income:Other > Savings: Gift from Jen @ jan 20
 
 Output:
 
@@ -77,7 +79,7 @@ Output:
 
 #### Balance adjustment
 
-    :amount [=] :account balance (via :account)
+    :amount [=] :account balance (via :account) [@ :date]
 
 #### Extra postings
 
@@ -89,6 +91,6 @@ second.
 
 The first `:amount` is ignored and is allowed for readability.
 
-## TODO
+## Vim
 
- * Dates
+    :Tab/\v^\d*\.?\d*\*?\s/l2

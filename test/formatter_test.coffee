@@ -15,10 +15,10 @@ describe 'formats', ->
 
     expect(str).to.eql """
       #{year}/01/02 * Bank balance
-        [Bank]  = $5100
+        [Bank]                                    = $5100
 
       #{year}/01/02 * salary
-        Bank  $100
+        Bank                                         $100
         Income
     """
 
@@ -29,7 +29,7 @@ describe 'formats', ->
     """
     expect(str).to.eql """
       #{year}/01/02 * Laundry
-        Laundry  $100
+        Laundry                                      $100
         Cash
     """
 
@@ -42,7 +42,7 @@ describe 'formats', ->
 
     expect(str).to.eql """
       #{year}/01/02 * B
-        B  $100
+        B                                            $100
         A
         ; awesome
     """
