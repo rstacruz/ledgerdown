@@ -221,3 +221,16 @@ describe 'expander', ->
     expect(data[1].type).eq 'comment'
     expect(data[1].comment).eq '[IGNORED] line 3: Something'
 
+  describe 'inline dates', ->
+    it 'inline dates', ->
+      data = Expander.parse '500 - Cash > Expenses @ feb 20'
+      expect(data[0].date).eq "2014/02/20"
+
+    it 'remembering inline dates', ->
+      data = Expander.parse '''
+        500 - Cash > Expenses @ feb 20
+        55  - Cash > Expenses
+      '''
+
+      expect(data[0].date).eq "2014/02/20"
+      expect(data[1].date).eq "2014/02/20"
