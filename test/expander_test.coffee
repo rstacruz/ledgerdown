@@ -28,6 +28,13 @@ describe 'expander', ->
 
     expect(j data[0].postings).eq j [ "Expenses  $500", "Cash" ]
 
+  it 'colon instead of comma', ->
+    data = Expander.parse '''
+      Jan 24:
+      500 Cash > Expenses: things'''
+
+    expect(j data[0].postings).eq j [ "Expenses  $500", "Cash" ]
+
   it 'use "to"', ->
     data = Expander.parse '''500 Cash to Expenses, things @ jan 26'''
     expect(j data[0].postings).eq j [ "Expenses  $500", "Cash" ]

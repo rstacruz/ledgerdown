@@ -11,34 +11,34 @@ My suggestion: use a Dropbox-powered text editor in your phone to write your
 ledgerdown files. They'll look like this:
 
     Jan 12:
-    35    Cash > Snacks, Famous waffles
-    55    Cash > Snacks, Chicken Wraps
-    4000  Savings > Cash
-    4000  Cash balance
-    *     ATM withdrawal
-          Expenses:Fees 11, Cash 2000, Savings
+    35    - Cash > Snacks, Famous waffles
+    55    - Cash > Snacks, Chicken Wraps
+    4000  - Savings > Cash
+    4000  - Cash balance
+    *     - ATM withdrawal
+            Expenses:Fees 11, Cash 2000, Savings
 
 Then run `ledgerdown` when you get home, to get this output:
 
-    2014/01/12 Famous waffles
+    2014/01/12 * Famous waffles
       Snacks              $35
       Cash
 
-    2014/01/12 Chicken Wraps
+    2014/01/12 * Chicken Wraps
       Snacks              $55
       Cash
 
     ; Descriptions are optional
-    2014/01/12 Cash
+    2014/01/12 * Cash
       Cash              $4000
       Savings
 
     ; Balance assertions
-    2014/01/12 Cash balance
+    2014/01/12 * Cash balance
       [Cash]          = $4000
 
     ; Custom postings are supported
-    2014/01/12 ATM Withdrawal
+    2014/01/12 * ATM Withdrawal
       Expenses:Fees       $11
       Cash              $2000
       Savings
@@ -69,17 +69,47 @@ Examples:
 
 Output:
 
-    Pay for goods
-      Expenses  $300
+    2014/01/01 * Pay for goods
+      Expenses             $300
       Cash
+
+    2014/01/01 * Buffalo chicken tacos
+      Snacks               $300
+      Cash
+
+    2014/01/20 * Gift from Jen
+      Savings              $500
+      Income:Other
 
 #### Balance assertion
 
     :amount [=] :account balance [@ :date]
 
+Examples:
+
+    4050 = Savings balance
+
+Output:
+
+    2014/01/01 * Savings balance
+      [Savings]          = $4050
+
 #### Balance adjustment
 
-    :amount [=] :account balance (via :account) [@ :date]
+    :amount [=] :account balance (via :adjustment) [@ :date]
+
+Transfers money from the `:adjustment` account to `:account` so that the amount 
+of `:account` is exactly `:amount`.
+
+Examples:
+
+    4050 = Savings balance (via Adjustments)
+
+Output:
+
+    2014/01/01 * Savings balance
+      Savings            = $4050
+      Adjustments
 
 #### Extra postings
 
@@ -90,6 +120,11 @@ You can join multiple postings in one line by commas. Be sure to indent the
 second.
 
 The first `:amount` is ignored and is allowed for readability.
+
+Examples:
+
+    *   - ATM Withdrawal
+          Fees 0.04, Cash 200, Savings
 
 ## Vim
 
