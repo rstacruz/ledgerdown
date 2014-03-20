@@ -59,6 +59,12 @@ Format
 
     :amount [-] :from > :to[:,] [:description] [@ :date]
 
+Transfers `:amount` from two accounts. The dash, colon, and commas are optional 
+and are allowed for readability.
+
+You may also specify a `:date`. This date is optional; the parser will remember 
+whatever was the last date read and use that when there's no date.
+
 Examples:
 
     300 - Cash > Expenses Pay for goods
@@ -80,6 +86,19 @@ Output:
     2014/01/20 * Gift from Jen
       Savings              $500
       Income:Other
+
+#### Date heading
+
+    [:year] :month :day:
+
+Sets the last date to the given day. This makes the next date-less transactions 
+use the last remembered day.
+
+Examples:
+
+    Jan 24:
+    400   - Cash > Expenses: Gift for Jack
+    22    - Cash > Expenses: Lunch with Ava
 
 #### Balance assertion
 
@@ -128,4 +147,35 @@ Examples:
 
 ## Vim
 
-    :Tab/\v^\d*\.?\d*\*?\s/l2
+    AddTabularPattern! ledgerdown /\v^\d*\.?\d*\*?\s/l2
+
+## Sample setup
+
+Makefile:
+
+    all: update report
+
+    update: 2014.ledger current.ledger
+
+    %.ledger: %.txt
+      cat $^ | ledgerdown > $@
+
+    report:
+      ledger -f .ledger bal
+
+.ledger:
+
+    ; use this file to bind together all your ledger files.
+    import common.ledger
+    import 2014.ledger
+    import current.ledger
+
+2014.txt:
+
+    ; move your old entries to this file.
+    ; it will automatically generate `2014.ledger`.
+
+current.txt:
+
+    ; put new entries here.
+    ; it will automatically generate `current.ledger`.
