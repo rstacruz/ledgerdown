@@ -11,14 +11,14 @@ My suggestion: use a Dropbox-powered text editor in your phone to write your
 ledgerdown files. They'll look like this:
 
     Jan 12:
-    35    - Cash > Snacks, Famous waffles
-    55    - Cash > Snacks, Chicken Wraps
-    4000  - Savings > Cash
-    4000  - Cash balance
-    *     - ATM withdrawal
-            Expenses:Fees 11, Cash 2000, Savings
+    35: Cash to Snacks: Famous waffles
+    55: Cash to Snacks: Chicken Wraps
+    4000: Savings to Cash: Withdraw
+    4000 = Cash balance
+    * ATM withdrawal
+      Expenses:Fees 11, Cash 2000, Savings
 
-Then run `ledgerdown` when you get home, to get this output:
+Then run *Ledgerdown* when you get home, to get this output:
 
     2014/01/12 * Famous waffles
       Snacks              $35
@@ -57,7 +57,7 @@ Format
 
 #### Transaction
 
-    :amount [-] :from > :to[:,] [:description] [@ :date]
+    :amount (:-) :from "to" :to(:,) [:description] [@ :date]
 
 Transfers `:amount` from two accounts. The dash, colon, and commas are optional 
 and are allowed for readability.
@@ -67,7 +67,9 @@ whatever was the last date read and use that when there's no date.
 
 Examples:
 
-    300 - Cash > Expenses Pay for goods
+    300 - Cash > Expenses: Pay for goods
+
+    300: Cash to Expenses: Pay for goods
 
     300 Cash > Snacks, Buffalo chicken tacos
 
@@ -97,12 +99,12 @@ use the last remembered day.
 Examples:
 
     Jan 24:
-    400   - Cash > Expenses: Gift for Jack
-    22    - Cash > Expenses: Lunch with Ava
+    400: Cash to Expenses: Gift for Jack
+    22:  Cash to Expenses: Lunch with Ava
 
 #### Balance assertion
 
-    :amount [=] :account balance [@ :date]
+    :amount [=] :account "balance" [@ :date]
 
 Examples:
 
@@ -115,7 +117,7 @@ Output:
 
 #### Balance adjustment
 
-    :amount [=] :account balance (via :adjustment) [@ :date]
+    :amount [=] :account "balance" ("via" :adjustment) [@ :date]
 
 Transfers money from the `:adjustment` account to `:account` so that the amount 
 of `:account` is exactly `:amount`.
@@ -142,12 +144,8 @@ The first `:amount` is ignored and is allowed for readability.
 
 Examples:
 
-    *   - ATM Withdrawal
-          Fees 0.04, Cash 200, Savings
-
-## Vim
-
-    AddTabularPattern! ledgerdown /\v^\d*\.?\d*\*?\s/l2
+    * ATM Withdrawal
+      Fees 0.04, Cash 200, Savings
 
 ## Sample setup
 
