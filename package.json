@@ -21,7 +21,7 @@
     "sinon": "*"
   },
   "bin": {
-    "command": "./bin/command"
+    "command": "./bin/ledgerdown"
   },
   "license": "MIT",
   "dependencies": {

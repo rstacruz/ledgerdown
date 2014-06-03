@@ -43,6 +43,10 @@ Then run *Ledgerdown* when you get home, to get this output:
       Cash              $2000
       Savings
 
+## Install
+
+    npm install -g rstacruz/ledgerdown
+
 ## Usage
 
     $ ledgerdown < input.txt > output.ledger
