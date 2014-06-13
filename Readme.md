@@ -1,7 +1,7 @@
 Ledgerdown
 ==========
 
-We love using ledger-cli to manage our personal finances, but writing every 
+We love using [ledger-cli] to manage our personal finances, but writing every 
 transaction in your life can be painfully cumbersome.
 
 Ledgerdown lets you write your days transactions in a condensed format, and 
@@ -181,3 +181,5 @@ current.txt:
 
     ; put new entries here.
     ; it will automatically generate `current.ledger`.
+
+[ledger-cli]: http://ledger-cli.org/
