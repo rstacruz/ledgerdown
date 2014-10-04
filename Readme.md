@@ -10,74 +10,83 @@ outputs it in a ledger.
 My suggestion: use a Dropbox-powered text editor in your phone to write your 
 ledgerdown files. They'll look like this:
 
-    Jan 12:
-    35: Cash to Snacks: Famous waffles
-    55: Cash to Snacks: Chicken Wraps
-    4000: Savings to Cash: Withdraw
-    4000 = Cash balance
-    * ATM withdrawal
-      Expenses:Fees 11, Cash 2000, Savings
+```yaml
+Jan 12:
+35: Cash to Snacks: Famous waffles
+55: Cash to Snacks: Chicken Wraps
+4000: Savings to Cash: Withdraw
+4000 = Cash balance
+* ATM withdrawal
+  Expenses:Fees 11, Cash 2000, Savings
+```
 
 Then run *Ledgerdown* when you get home, to get this output:
 
-    2014/01/12 * Famous waffles
-      Snacks              $35
-      Cash
+```sh
+2014/01/12 * Famous waffles
+  Snacks              $35
+  Cash
 
-    2014/01/12 * Chicken Wraps
-      Snacks              $55
-      Cash
+2014/01/12 * Chicken Wraps
+  Snacks              $55
+  Cash
 
-    ; Descriptions are optional
-    2014/01/12 * Cash
-      Cash              $4000
-      Savings
+; Descriptions are optional
+2014/01/12 * Cash
+  Cash              $4000
+  Savings
 
-    ; Balance assertions
-    2014/01/12 * Cash balance
-      [Cash]          = $4000
+; Balance assertions
+2014/01/12 * Cash balance
+  [Cash]          = $4000
 
-    ; Custom postings are supported
-    2014/01/12 * ATM Withdrawal
-      Expenses:Fees       $11
-      Cash              $2000
-      Savings
+; Custom postings are supported
+2014/01/12 * ATM Withdrawal
+  Expenses:Fees       $11
+  Cash              $2000
+  Savings
+```
 
 ## Install
 
-    npm install -g rstacruz/ledgerdown
+```sh
+$ npm install -g rstacruz/ledgerdown
+```
 
 ## Usage
 
-    $ ledgerdown < input.txt > output.ledger
+```sh
+$ ledgerdown < input.txt > output.ledger
+```
 
 Options:
 
-    # Default currency format
-      ledgerdown -c "AUD %s" < ... > ...
+
+```sh
+# Default currency format     
+$ ledgerdown -c "AUD %s" < ... > ...
+```
 
 Format
 ------
 
 #### Transaction
 
-    :amount (:-) :from "to" :to(:,) [:description] [@ :date]
+```sh
+AMOUNT ":" FROM "to" TO ":" [DESCRIPTION] ["@" DATE]
+```
 
-Transfers `:amount` from two accounts. The dash, colon, and commas are optional 
+Transfers `AMOUNT` from two accounts. The dash, colon, and commas are optional 
 and are allowed for readability.
 
-You may also specify a `:date`. This date is optional; the parser will remember 
+You may also specify a `DATE`. This date is optional; the parser will remember 
 whatever was the last date read and use that when there's no date.
 
 Examples:
 
-    300 - Cash > Expenses: Pay for goods
-
+    300: Cash to Expenses
     300: Cash to Expenses: Pay for goods
-
-    300 Cash > Snacks, Buffalo chicken tacos
-
-    500 - Income:Other > Savings: Gift from Jen @ jan 20
+    500: Income:Other to Savings: Gift from Jen @ jan 20
 
 Output:
 
@@ -95,7 +104,7 @@ Output:
 
 #### Date heading
 
-    [:year] :month :day:
+    [YEAR] MONTH DAY ":"
 
 Sets the last date to the given day. This makes the next date-less transactions 
 use the last remembered day.
@@ -104,11 +113,13 @@ Examples:
 
     Jan 24:
     400: Cash to Expenses: Gift for Jack
-    22:  Cash to Expenses: Lunch with Ava
+    220: Cash to Expenses: Lunch with Ava
 
 #### Balance assertion
 
-    :amount [=] :account "balance" [@ :date]
+```sh
+AMOUNT "=" ACCOUNT "balance" [@ "DATE"]
+```
 
 Examples:
 
@@ -121,7 +132,9 @@ Output:
 
 #### Balance adjustment
 
-    :amount [=] :account "balance" ("via" :adjustment) [@ :date]
+```sh
+AMOUNT "=" ACCOUNT "balance (via" ADJUSTMENT ")" ["@" DATE]
+```
 
 Transfers money from the `:adjustment` account to `:account` so that the amount 
 of `:account` is exactly `:amount`.
