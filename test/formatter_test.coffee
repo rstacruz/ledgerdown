@@ -10,7 +10,7 @@ describe 'formats', ->
     str = proc """
       Jan 2:
       5100 = Bank balance
-      100  - Income > Bank, salary
+      100: Income to Bank: salary
     """
 
     expect(str).to.eql """
@@ -25,7 +25,7 @@ describe 'formats', ->
   it 'inferred', ->
     str = proc """
       Jan 2:
-      100 - Cash > Laundry
+      100: Cash to Laundry
     """
     expect(str).to.eql """
       #{year}/01/02 * Laundry
@@ -36,7 +36,7 @@ describe 'formats', ->
   it 'note', ->
     str = proc """
       Jan 2:
-      100 A > B
+      100: A to B
         ; awesome
     """
 

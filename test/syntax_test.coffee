@@ -12,27 +12,17 @@ describe 'Syntax', ->
         postings: [ "Expenses  $500", "Cash" ]
       ]
 
-    it '- and >', ->
-      @data = Expander.parse '''
-        Jan 24:
-        500 - Cash > Expenses: hello'''
-
-    it 'to', ->
-      @data = Expander.parse '''
-        Jan 24:
-        500 - Cash to Expenses: hello'''
-
-    it 'comma and to', ->
+    it 'default style', ->
       @data = Expander.parse '''
         Jan 24:
         500: Cash to Expenses: hello'''
 
-    it 'no comma', ->
+    it '>', ->
       @data = Expander.parse '''
         Jan 24:
-        500 Cash to Expenses: hello'''
+        500: Cash > Expenses: hello'''
 
-    it 'no comma 2', ->
+    it 'with spaces', ->
       @data = Expander.parse '''
         Jan 24:
-        500 Cash to Expenses hello'''
+        500 : Cash to Expenses : hello'''

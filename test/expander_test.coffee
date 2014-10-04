@@ -13,7 +13,7 @@ describe 'expander', ->
   it 'transaction without description', ->
     data = Expander.parse '''
       Jan 24:
-      500 - Cash > Expenses'''
+      500: Cash to Expenses'''
 
     expect(j data).eq j [
       date: "2014/01/24"
@@ -21,42 +21,27 @@ describe 'expander', ->
       postings: [ "Expenses  $500", "Cash" ]
     ]
 
-  it 'transaction without dash', ->
-    data = Expander.parse '''
-      Jan 24:
-      500 Cash > Expenses'''
-
-    expect(j data[0].postings).eq j [ "Expenses  $500", "Cash" ]
-
-  it 'colon instead of comma', ->
-    data = Expander.parse '''
-      Jan 24:
-      500 Cash > Expenses: things'''
-
-    expect(j data[0].postings).eq j [ "Expenses  $500", "Cash" ]
-
   it 'use "to"', ->
-    data = Expander.parse '''500 Cash to Expenses, things @ jan 26'''
+    data = Expander.parse '''500: Cash to Expenses: things @ jan 26'''
     expect(j data[0].postings).eq j [ "Expenses  $500", "Cash" ]
 
   it 'use "into"', ->
-    data = Expander.parse '''500 Cash into Expenses, things @ jan 26'''
+    data = Expander.parse '''500: Cash into Expenses: things @ jan 26'''
     expect(j data[0].postings).eq j [ "Expenses  $500", "Cash" ]
-
 
   it 'date with year', ->
     data = Expander.parse '''
       2010 Jan 24:
-      500 Cash > Expenses'''
+      500: Cash to Expenses'''
 
     expect(data[0].date).eq "2010/01/24"
 
   it 'remembering years', ->
     data = Expander.parse '''
       2010 Jan 24:
-      500 Cash > Expenses
+      500: Cash to Expenses
       Jan 25:
-      500 Expenses > Cash'''
+      500: Expenses to Cash'''
 
     expect(data[0].date).eq "2010/01/24"
     expect(data[1].date).eq "2010/01/25"
@@ -64,28 +49,28 @@ describe 'expander', ->
   it 'transaction with description', ->
     data = Expander.parse '''
       Jan 24:
-      500 - Cash > Expenses grocery'''
+      500: Cash to Expenses: grocery'''
 
     expect(data[0].description).eq "grocery"
 
   it 'transaction with comma and description', ->
     data = Expander.parse '''
       Jan 24:
-      500 - Cash > Expenses, grocery'''
+      500: Cash to Expenses: grocery'''
 
     expect(data[0].description).eq "grocery"
 
   it 'date with d-o-w', ->
     data = Expander.parse '''
       Jan 24 Wed:
-      500 - Cash > Expenses'''
+      500: Cash to Expenses'''
 
     expect(data[0].date).eq "2014/01/24"
 
   it 'description/note', ->
     data = Expander.parse '''
       Jan 24:
-      500 - Cash > Expenses
+      500: Cash > Expenses
           ; Chicken'''
 
     expect(j data[0].postings).eq j [ "Expenses  $500", "Cash", "; Chicken" ]
@@ -128,7 +113,7 @@ describe 'expander', ->
   it 'extra posting with amount', ->
     data = Expander.parse '''
       Jan 24:
-      500 - A > B
+      500: A to B
           (Budget:Grocery) -200
     '''
 
@@ -137,7 +122,7 @@ describe 'expander', ->
   it 'extra posting without amount', ->
     data = Expander.parse '''
       Jan 24:
-      500 - A > B
+      500: A to B
           Assets:Cash
     '''
 
@@ -146,7 +131,7 @@ describe 'expander', ->
   it "ignore extra posting when there's an extra line", ->
     data = Expander.parse '''
       Jan 24:
-      500 - A > B
+      500: A to B
 
           Assets:Cash
     '''
@@ -196,7 +181,7 @@ describe 'expander', ->
     it 'transaction', ->
       data = Expander.parse '''
         Jan 24 Wed:
-        500 - Cash > Expenses'''
+        500: Cash to Expenses'''
 
       expect(data[0].postings[0]).eq "Expenses  PHP 500"
 
@@ -210,7 +195,7 @@ describe 'expander', ->
     it 'extra posting with amount', ->
       data = Expander.parse '''
         Jan 24:
-        500 - A > B
+        500: A to B
             (Budget:Grocery) -200
       '''
 
@@ -220,7 +205,7 @@ describe 'expander', ->
     data = Expander.parse '''
       Jan 2:
       5100 = Bank balance
-      100  - Income > Bank, salary
+      100: Income to Bank: salary
     '''
 
     expect(data).have.length 2
@@ -239,13 +224,13 @@ describe 'expander', ->
 
   describe 'inline dates', ->
     it 'inline dates', ->
-      data = Expander.parse '500 - Cash > Expenses @ feb 20'
+      data = Expander.parse '500: Cash to Expenses @ feb 20'
       expect(data[0].date).eq "2014/02/20"
 
     it 'remembering inline dates', ->
       data = Expander.parse '''
-        500 - Cash > Expenses @ feb 20
-        55  - Cash > Expenses
+        500: Cash to Expenses @ feb 20
+        55: Cash to Expenses
       '''
 
       expect(data[0].date).eq "2014/02/20"

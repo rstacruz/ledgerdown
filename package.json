@@ -15,10 +15,11 @@
     "test": "./node_modules/.bin/mocha"
   },
   "devDependencies": {
-    "mocha": "*",
-    "chai": "*",
+    "chai": "^1.8.1",
     "coffee-script": "*",
-    "sinon": "*"
+    "mocha": "^1.17.1",
+    "mocha-clean": "^0.2.1",
+    "sinon": "^1.7.3"
   },
   "bin": {
     "command": "./bin/ledgerdown"
