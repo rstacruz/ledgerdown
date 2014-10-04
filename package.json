@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "chai": "^1.8.1",
-    "coffee-script": "*",
+    "coffee-script": "^1.8.0",
     "mocha": "^1.17.1",
     "mocha-clean": "^0.2.1",
     "sinon": "^1.7.3"
