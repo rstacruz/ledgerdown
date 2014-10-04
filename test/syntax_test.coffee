@@ -14,9 +14,13 @@ describe 'Syntax', ->
       @parse 'Jan 24:\n500: Cash to Expenses'
       expect(@postings).eql ['Expenses  $500', 'Cash']
 
-    it 'custom currency', ->
+    it 'prefix currency', ->
       @parse 'Jan 24:\nAU$ 500: Cash to Expenses'
       expect(@postings).eql ['Expenses  AU$ 500', 'Cash']
+
+    it 'suffix currency', ->
+      @parse 'Jan 24:\n500 $: Cash to Expenses'
+      expect(@postings).eql ['Expenses  500 $', 'Cash']
 
   describe 'transactions', ->
     afterEach ->
