@@ -7,6 +7,10 @@ transaction in your life can be painfully cumbersome.
 Ledgerdown lets you write your days transactions in a condensed format, and 
 outputs it in a ledger.
 
+
+[![Status](http://img.shields.io/travis/rstacruz/ledgerdown/master.svg?style=flat)](https://travis-ci.org/rstacruz/ledgerdown 
+"See test builds")
+
 My suggestion: use a Dropbox-powered text editor in your phone to write your 
 ledgerdown files. They'll look like this:
 
