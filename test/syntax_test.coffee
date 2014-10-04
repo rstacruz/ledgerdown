@@ -4,6 +4,20 @@ expect = require('chai').expect
 j = JSON.stringify
 
 describe 'Syntax', ->
+  describe 'currencies', ->
+    before ->
+      @parse = (str) =>
+        @data = Expander.parse (str)
+        @postings = @data[0].postings
+
+    it 'default currency', ->
+      @parse 'Jan 24:\n500: Cash to Expenses'
+      expect(@postings).eql ['Expenses  $500', 'Cash']
+
+    it 'custom currency', ->
+      @parse 'Jan 24:\nAU$ 500: Cash to Expenses'
+      expect(@postings).eql ['Expenses  AU$ 500', 'Cash']
+
   describe 'transactions', ->
     afterEach ->
       expect(j @data).eq j [
