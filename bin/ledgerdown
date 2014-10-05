@@ -17,4 +17,7 @@ read(program.args, function (err, res) {
   var out = format(data);
 
   console.log(out);
+
+  if (Expander.warnings.length > 0)
+    console.warn(Expander.warnings.join("\n"));
 });
