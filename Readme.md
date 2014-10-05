@@ -20,8 +20,11 @@ Jan 12:
 55: Cash to Snacks: Chicken Wraps
 4000: Savings to Cash: Withdraw
 4000 = Cash balance
-* ATM withdrawal
-  Expenses:Fees 11, Cash 2000, Savings
+
++ ATM withdrawal
+  11: Expenses:Fees
+  2000: Cash
+  Savings
 ```
 
 Then run *Ledgerdown* when you get home, to get this output:
