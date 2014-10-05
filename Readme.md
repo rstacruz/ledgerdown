@@ -163,6 +163,7 @@ Note: this will be finalized better in the next version
 "+" DESCRIPTION
    POSTING[" / " POSTING2 " / " ... POSTINGn]
    [POSTINGn]
+ ```
 
 You can join multiple postings in one line by slashes. Be sure to indent the 
 second.
