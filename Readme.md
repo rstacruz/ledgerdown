@@ -161,7 +161,7 @@ Note: this will be finalized better in the next version
    POSTING[" / " POSTING2 " / " ... POSTINGn]
    [POSTINGn]
 
-You can join multiple postings in one line by commas. Be sure to indent the 
+You can join multiple postings in one line by slashes. Be sure to indent the 
 second.
 
 Postings can be in a simple format, or a format understood by ledger-cli. When 
