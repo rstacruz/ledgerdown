@@ -60,15 +60,14 @@ $ npm install -g rstacruz/ledgerdown
 ## Usage
 
 ```sh
-$ ledgerdown < input.txt > output.ledger
+$ ledgerdown input.txt > output.ledger
 ```
 
 Options:
 
-
 ```sh
-# Default currency format     
-$ ledgerdown -c "AUD %s" < ... > ...
+# Default currency format
+$ ledgerdown -c "AUD %s" ... > ...
 ```
 
 Format
@@ -153,20 +152,46 @@ Output:
       Savings            = $4050
       Adjustments
 
-#### Extra postings
+#### Custom transactions
 
-    [:amount]* [-] :description
-       :posting[, :posting2, ... postingN]
+Note: this will be finalized better in the next version
+
+```sh
+"+" DESCRIPTION
+   POSTING[" / " POSTING2 " / " ... POSTINGn]
+   [POSTINGn]
 
 You can join multiple postings in one line by commas. Be sure to indent the 
 second.
 
-The first `:amount` is ignored and is allowed for readability.
+Postings can be in a simple format, or a format understood by ledger-cli. When 
+it's in ledger-cli format, it will be included in verbatim. The simple version 
+is as follows:
 
-Examples:
+```sh
+AMOUNT ": " ACCOUNT
+```
 
-    * ATM Withdrawal
-      Fees 0.04, Cash 200, Savings
+Simple format example:
+
+    + ATM Withdrawal
+      0.04: Fees / 200: Cash / Savings
+
+Another example:
+
+    + ATM Withdrawal
+      0.04: Fees
+      200: Cash
+      Savings
+
+ledger-cli format is any posting that doesn't match the simple style.  Remember 
+to always use at least two spaces to separate the account and the amount. (Note: 
+    default currencies will not work here.)
+
+    + ATM Withdrawal
+      Fees   $0.04
+      Cash   $200
+      Savings
 
 ## Sample setup
 
