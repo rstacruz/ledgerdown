@@ -54,5 +54,5 @@ describe 'formats', ->
     """
 
     expect(str).to.eql """
-      ; [IGNORED] line 2: Something
+      ; ERROR [stdin]:2: parse error: "Something"
     """

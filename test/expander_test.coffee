@@ -215,12 +215,12 @@ describe 'expander', ->
       Jan 2:
       5100 = Bank balance
       Something
-      100  - Income > Bank
+      100: Income to Bank
     '''
 
     expect(data).have.length 3
     expect(data[1].type).eq 'comment'
-    expect(data[1].comment).eq '[IGNORED] line 3: Something'
+    expect(data[1].comment).eq 'ERROR [stdin]:3: parse error: "Something"'
 
   describe 'inline dates', ->
     it 'inline dates', ->
