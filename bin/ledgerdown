@@ -13,11 +13,19 @@ read(program.args, function (err, res) {
   if (err) throw err;
   Expander.options.currencyFormat = program.currencyFormat;
 
-  var data = Expander.parse(res.data);
-  var out = format(data);
+  var output = [];
 
-  console.log(out);
+  res.files.forEach(function (file) {
+    Expander.options.filename = file.name;
+    var data = Expander.parse(file.data);
+    output.push(format(data));
+  });
 
-  if (Expander.warnings.length > 0)
-    console.warn(Expander.warnings.join("\n"));
+  console.log(output.join("\n\n"));
+
+  if (Expander.warnings.length > 0) {
+    console.warn("\n\n\033[31mExpansion completed with errors.\n\033[34m");
+    console.warn("  " + Expander.warnings.join("\n  "));
+    console.warn("\033[0m");
+  }
 });
