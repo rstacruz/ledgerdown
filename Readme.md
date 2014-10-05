@@ -124,7 +124,7 @@ Examples:
 #### Balance assertion
 
 ```sh
-AMOUNT "=" ACCOUNT "balance" [@ "DATE"]
+AMOUNT "=" ACCOUNT "balance" ["@" DATE]
 ```
 
 Examples:
