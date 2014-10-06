@@ -1,9 +1,11 @@
-# Syntax reference
+---
+title: Syntax reference
+---
 
 ## Transaction
 
 ```sh
-AMOUNT :" FROM "to" ACCOUNT [":" DESCRIPTION] ["@" DATE]
+AMOUNT ":" FROM "to" ACCOUNT [":" DESCRIPTION] ["@" DATE]
 ```
 
 Transfers `AMOUNT` from two accounts.
@@ -45,7 +47,7 @@ Output:
 [YEAR] MONTH DAY ":"
 ```
 
-Sets the last date to the given day. This makes the next date-less transactions 
+Sets the last date to the given day. This makes the next date-less transactions
 use the last remembered day.
 
 If a `YEAR` is not specified, it'll use the year of the last transaction 
