@@ -1,0 +1,2 @@
+2014/01/01 * wallet empty
+  [Cash]                                     = $500

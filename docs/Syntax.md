@@ -16,6 +16,8 @@ default currency (`$` by default).
 You may also specify a `DATE`. This date is optional; the parser will remember 
 whatever was the last date read and use that when there's no date.
 
+Transactions are considered cleared (`*`) by default.
+
 Examples:
 
     300: Cash to Expenses
