@@ -2,22 +2,18 @@ Ledgerdown
 ==========
 
 We love using [ledger-cli] to manage our personal finances, but writing every 
-transaction in your life can be painfully cumbersome.
-
-Ledgerdown lets you write your days transactions in a condensed format, and 
-outputs it in a ledger.
-
+transaction in your life can be painfully cumbersome. Ledgerdown lets you write 
+your days transactions in a condensed format, and outputs it in a ledger.
 
 [![Status](http://img.shields.io/travis/rstacruz/ledgerdown/master.svg?style=flat)](https://travis-ci.org/rstacruz/ledgerdown 
 "See test builds")
 
-My suggestion: use a Dropbox-powered text editor in your phone to write your 
-ledgerdown files. They'll look like this:
+Use a Dropbox-powered text editor in your phone to write your ledgerdown files.  
+They'll look like this:
 
 ```yaml
 Jan 12:
 35: Cash to Snacks: Famous waffles
-55: Cash to Snacks: Chicken Wraps
 4000: Savings to Cash: Withdraw
 4000 = Cash balance
 
@@ -32,10 +28,6 @@ Then run *Ledgerdown* when you get home, to get this output:
 ```sh
 2014/01/12 * Famous waffles
   Snacks              $35
-  Cash
-
-2014/01/12 * Chicken Wraps
-  Snacks              $55
   Cash
 
 ; Descriptions are optional
@@ -61,6 +53,9 @@ $ npm install -g rstacruz/ledgerdown
 ```
 
 ## Usage
+
+Ledgerdown is a CLI tool that takes an input and spits out 
+[ledger-cli]-formatted output.
 
 ```sh
 $ ledgerdown input.txt > output.ledger
