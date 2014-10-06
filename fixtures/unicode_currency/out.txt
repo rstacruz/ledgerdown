@@ -1,3 +1,7 @@
 2014/01/01 * Withdraw
   Cash                                         £500
   Savings
+
+2014/01/01 * Spend
+  Expenses                                     €100
+  Cash
