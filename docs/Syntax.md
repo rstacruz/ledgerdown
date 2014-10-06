@@ -135,5 +135,15 @@ Example:
     alias L = Liabilities
     ~~~
 
-    500: L:Loan to Cash: Yep
+    500: L:Bank to Cash: Bank loan
 
+## Comments
+
+Comments begin with `;`.
+
+Example:
+
+```dosini
+; unsure about this amount
+50.23: Credit Card to Misc: books
+```
