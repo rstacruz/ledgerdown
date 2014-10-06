@@ -1,3 +1,9 @@
+## v0.3.0 - unreleased
+
+* Add raw support (`~~~`).
+
+* Deprecate `>` and `into`.
+
 ## v0.2.0 - October 5, 2014
 
 This release refines the syntax and implements errors.
