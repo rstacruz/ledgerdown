@@ -25,10 +25,6 @@ describe 'expander', ->
     data = Expander.parse '''500: Cash to Expenses: things @ jan 26'''
     expect(j data[0].postings).eq j [ "Expenses  $500", "Cash" ]
 
-  it 'use "into"', ->
-    data = Expander.parse '''500: Cash into Expenses: things @ jan 26'''
-    expect(j data[0].postings).eq j [ "Expenses  $500", "Cash" ]
-
   it 'date with year', ->
     data = Expander.parse '''
       2010 Jan 24:
@@ -70,8 +66,8 @@ describe 'expander', ->
   it 'description/note', ->
     data = Expander.parse '''
       Jan 24:
-      500: Cash > Expenses
-          ; Chicken'''
+      500: Cash to Expenses
+        ; Chicken'''
 
     expect(j data[0].postings).eq j [ "Expenses  $500", "Cash", "; Chicken" ]
 

@@ -8,11 +8,12 @@
   "version": "0.2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/rstacruz/___.git"
+    "url": "https://github.com/rstacruz/ledgerdown.git"
   },
   "main": "index",
   "scripts": {
-    "test": "./node_modules/.bin/mocha"
+    "test": "mocha",
+    "autotest": "mocha -R min --watch -b"
   },
   "devDependencies": {
     "chai": "^1.8.1",

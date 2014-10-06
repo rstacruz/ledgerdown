@@ -35,11 +35,6 @@ describe 'Syntax', ->
         Jan 24:
         500: Cash to Expenses: hello'''
 
-    it '>', ->
-      @data = Expander.parse '''
-        Jan 24:
-        500: Cash > Expenses: hello'''
-
     it 'with spaces', ->
       @data = Expander.parse '''
         Jan 24:
