@@ -3,7 +3,7 @@
 ## Transaction
 
 ```sh
-AMOUNT ":" FROM "to" TO ":" [DESCRIPTION] ["@" DATE]
+AMOUNT ":" ACCOUNT1 "to" ACCOUNT2 [":" DESCRIPTION] ["@" DATE]
 ```
 
 Transfers `AMOUNT` from two accounts. The dash, colon, and commas are optional 
@@ -143,7 +143,7 @@ Comments begin with `;`.
 
 Example:
 
-```dosini
+```
 ; unsure about this amount
 50.23: Credit Card to Misc: books
 ```
