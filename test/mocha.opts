@@ -1,4 +1,2 @@
--R spec
---recursive
---compilers coffee:coffee-script/register
 -r mocha-clean/brief
+--compilers coffee:coffee-script/register
