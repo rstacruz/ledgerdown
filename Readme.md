@@ -197,6 +197,22 @@ to always use at least two spaces to separate the account and the amount. (Note:
       Cash   $200
       Savings
 
+#### Raw
+
+``` sh
+"~~~"
+RAWDATA
+"~~~"
+```
+
+Example:
+
+    ~~~
+    alias L = Liabilities
+    ~~~
+
+    500: L:Loan to Cash: Yep
+
 ## Sample setup
 
 Makefile:
