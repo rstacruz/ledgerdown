@@ -64,7 +64,7 @@ recorded, or the current year otherwise.
 ## Balance assertion
 
 ```sh
-AMOUNT "=" ACCOUNT "balance" ["@" DATE]
+AMOUNT "=" ACCOUNT "balance" [":" DESCRIPTION] ["@" DATE]
 ```
 
 Asserts that the given `ACCOUNT` has a specific balance.
@@ -77,6 +77,15 @@ Output:
 
     2014/01/01 * Savings balance
       [Savings]          = $4050
+
+#### Example with description
+
+    0 = Cash balance: wallet emptied
+
+Output:
+
+    2014/01/01 * wallet emptied
+      [Savings]          = $0
 
 #### See also
 

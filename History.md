@@ -6,6 +6,8 @@
 
 * Support many other currency symbols, like £ and €.
 
+* Allow balance assertion with descriptions.
+
 ## v0.2.0 - October 5, 2014
 
 This release refines the syntax and implements errors.
