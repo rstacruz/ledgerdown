@@ -4,6 +4,8 @@
 
 * Deprecate `>` and `into`.
 
+* Support many other currency symbols, like £ and €.
+
 ## v0.2.0 - October 5, 2014
 
 This release refines the syntax and implements errors.
