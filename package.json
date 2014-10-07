@@ -16,19 +16,19 @@
     "autotest": "mocha -R min --watch -b"
   },
   "devDependencies": {
-    "chai": "^1.8.1",
+    "chai": "^1.9.2",
     "coffee-script": "^1.8.0",
     "mocha": "^1.21.4",
     "mocha-clean": "^0.2.1",
-    "sinon": "^1.7.3"
+    "sinon": "^1.10.3"
   },
   "bin": {
     "command": "./bin/ledgerdown"
   },
   "license": "MIT",
   "dependencies": {
-    "commander": "~2.1.0",
-    "moment": "~2.5.1",
+    "commander": "^2.1.0",
+    "moment": "^2.5.1",
     "read-input": "^0.2.0"
   }
 }
