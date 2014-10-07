@@ -103,7 +103,7 @@ describe 'expander', ->
     data = Expander.parse '''
       Jan 24:
       500: A to B
-          (Budget:Grocery) -200
+        -200: (Budget:Grocery)
     '''
 
     expect(data[0].postings[2]).eq "(Budget:Grocery)  $-200"
@@ -112,7 +112,7 @@ describe 'expander', ->
     data = Expander.parse '''
       Jan 24:
       500: A to B
-          Assets:Cash
+        Assets:Cash
     '''
 
     expect(data[0].postings[2]).eq "Assets:Cash"
@@ -130,7 +130,7 @@ describe 'expander', ->
   it 'null transaction', ->
     data = Expander.parse '''
       Jan 24:
-      * Withdrawal
+      + Withdrawal
     '''
 
     expect(data[0].date).eq "2014/01/24"
@@ -141,7 +141,7 @@ describe 'expander', ->
     data = Expander.parse '''
       Jan 24:
       * Withdrawal
-        Cash 200
+        200: Cash
         Savings
     '''
 
@@ -151,7 +151,7 @@ describe 'expander', ->
     data = Expander.parse '''
       Jan 24:
       * Withdrawal
-        Cash 1000, Fees -0.23, Assets:Savings'''
+        1000: Cash, -0.23: Fees, Assets:Savings'''
 
     expect(data[0].postings[0]).eq "Cash  $1000"
     expect(data[0].postings[1]).eq "Fees  $-0.23"
@@ -185,7 +185,7 @@ describe 'expander', ->
       data = Expander.parse '''
         Jan 24:
         500: A to B
-            (Budget:Grocery) -200
+            -200: (Budget:Grocery)
       '''
 
       expect(data[0].postings[2]).eq "(Budget:Grocery)  PHP -200"
