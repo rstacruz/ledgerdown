@@ -8,6 +8,8 @@
 
 * Allow balance assertion with descriptions.
 
+* Fix bug where amounts with commas don't apply currencies.
+
 ## v0.2.0 - October 5, 2014
 
 This release refines the syntax and implements errors.
