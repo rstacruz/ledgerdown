@@ -90,7 +90,7 @@ describe 'expander', ->
   it 'null transaction without amount', ->
     data = Expander.parse '''
       Jan 24:
-      * ATM withdrawal'''
+      + ATM withdrawal'''
 
     expect(data[0].postings).be.empty
 
@@ -140,7 +140,7 @@ describe 'expander', ->
   it 'null transaction with custom postings', ->
     data = Expander.parse '''
       Jan 24:
-      * Withdrawal
+      + Withdrawal
         200: Cash
         Savings
     '''
@@ -150,7 +150,7 @@ describe 'expander', ->
   it 'multiple custom postings', ->
     data = Expander.parse '''
       Jan 24:
-      * Withdrawal
+      + Withdrawal
         1000: Cash, -0.23: Fees, Assets:Savings'''
 
     expect(data[0].postings[0]).eq "Cash  $1000"
