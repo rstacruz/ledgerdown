@@ -1,0 +1,3 @@
+2014/01/01 * Do things
+  Expenses                                      $20
+  Cash

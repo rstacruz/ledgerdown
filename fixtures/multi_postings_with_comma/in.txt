@@ -1,0 +1,3 @@
+2014 Jan 1:
++ Do things
+  20,932: Expenses:Utilities, 10,948.00: Liabilities:Misc, Assets:Cash

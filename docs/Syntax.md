@@ -118,7 +118,7 @@ Note: this will be finalized better in the next version.
 
 ```sh
 "+" DESCRIPTION
-   POSTING[" / " POSTING2 " / " ... POSTINGn]
+   POSTING[", " POSTING2 ", " ... POSTINGn]
    [POSTINGn]
  ```
 
@@ -136,7 +136,7 @@ AMOUNT ": " ACCOUNT
 #### Simple format example
 
     + ATM Withdrawal
-      0.04: Fees / 200: Cash / Savings
+      0.04: Fees, 200: Cash, Savings
 
 #### Another example
 
