@@ -1,3 +1,7 @@
+## v0.3.2 - October  8, 2014
+
+* Fix package name typo.
+
 ## v0.3.1 - October  8, 2014
 
 * Fix bin command.
