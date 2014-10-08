@@ -1,3 +1,7 @@
+## v0.3.1 - October  8, 2014
+
+* Fix bin command.
+
 ## v0.3.0 - October  8, 2014
 
 * Add raw support (`~~~`).
