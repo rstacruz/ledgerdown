@@ -1,4 +1,4 @@
-## v0.3.0 - unreleased
+## v0.3.0 - October  8, 2014
 
 * Add raw support (`~~~`).
 
@@ -9,6 +9,8 @@
 * Allow balance assertion with descriptions.
 
 * Fix bug where amounts with commas don't apply currencies.
+
+* Publish to npm.
 
 ## v0.2.0 - October 5, 2014
 

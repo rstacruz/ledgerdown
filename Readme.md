@@ -49,8 +49,10 @@ Then run *Ledgerdown* when you get home, to get this output:
 ## Install
 
 ```sh
-$ npm install -g rstacruz/ledgerdown
+$ npm install -g ledgerdown
 ```
+
+[![npm version](http://img.shields.io/npm/v/ledgerdown.svg?style=flat)](https://npmjs.org/package/ledgerdown "View this project on npm")
 
 ## Usage
 
