@@ -2,6 +2,22 @@
 title: Planned future syntaxes
 ---
 
+## Payee and notes
+
+You'll be able to separate the payee and notes
+
+```
+$20.30: Cash to Grocery: Trader Joe's: spices for tuna salad
+```
+
+Output:
+
+```
+2014/01/01 * Trader Joe's  ; spcies for tuna salad
+  Grocery                  $20.30
+  Cash
+```
+
 ## Tags
 
 This allows things to be searcheable via `ledger r %salad`. The prefix is `#` 
